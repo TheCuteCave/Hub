@@ -1,0 +1,11 @@
+name: Hub
+version: '${project.version}'
+main: dev.myclxss.Hub
+
+commands:
+  hub:
+    description: main command
+  spawn:
+    description: spawn command
+  arena:
+    description: arena command

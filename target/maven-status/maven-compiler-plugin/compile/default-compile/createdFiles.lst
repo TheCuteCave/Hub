@@ -1,0 +1,10 @@
+dev\myclxss\command\ArenaCommand.class
+dev\myclxss\listener\JoinListener.class
+dev\myclxss\API.class
+dev\myclxss\command\SpawnCommand.class
+dev\myclxss\command\FirstCommand.class
+dev\myclxss\components\Color.class
+dev\myclxss\Hub.class
+dev\myclxss\listener\ProtectionListener.class
+dev\myclxss\listener\InteractListener.class
+dev\myclxss\components\Files.class

@@ -1,0 +1,39 @@
+HELP-MESSAGE:
+- "&c&lMensaje de Ayuda"
+- "&r"
+- "&6Linea 1"
+- "&aLinea 2"
+- "&eLinea 3"
+
+SPAWN:
+  COMMAND: "&2(✓) &aFuiste enviado al spawn."
+  SET-LOCATION: "&2(✓) &aLa ubicacion del spawn se coloco correctamente."
+
+ARENA:
+  JOIN: "&2(✓) &aTe has unido al combate."
+  LEAVE: "&4(✕) &aHas salido del combate."
+  SET-LOCATION: "&2() &aLa ubicacion de la arena se coloco correctamente."  
+
+ITEMS:
+  ARENA:
+    NAME: "&6Arena Item"
+    ITEM: DIAMOND_SWORD
+    SLOT: 0
+    LORE:
+    - "&6Linea 1"
+    - "&aLinea 2"
+    - "&eLinea 3"
+
+  SERVER-SELECTO:
+    NAME: "&6Server Item"
+    ITEM: COMPASS
+    SLOT: 1
+    LORE:
+    - "&6Linea 1"
+    - "&aLinea 2"
+    - "&eLinea 3"
+
+ERROR:
+  NO-PERMISSION: "&4(✕) &cNo tienes permisos para usar este comando."
+  SPAWN-LOCATION: "&4(✕) &cLa ubicacion no existe."
+  ARENA-LOCATION: "&4(✕) &cLa ubicacion no existe."
