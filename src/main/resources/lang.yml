@@ -33,7 +33,28 @@ ITEMS:
     - "&aLinea 2"
     - "&eLinea 3"
 
+SCOREBOARD:
+  TITLE: "&5&lEXPANSION CRAFT"
+  LINES:
+    - " "
+    - "&5&lUsuario"
+    - "&8&l● &fNick: &7%player_name%"
+    - "&8&l● &fRango: %luckperms_prefix%"
+    - " "
+    - "&5&lServidor"
+    - "&8&l● &fHub: &d#2"
+    - "&8&l● &fEn linea: &d%bungee_total%"
+    - " "
+    - "&7play.expansioncraft.net"    
+
+WELCOME-MESSAGE:
+- "------------------"
+- "WELCOME"
+- "MESSAGE"
+- "------------------"
+
 ERROR:
   NO-PERMISSION: "&4(✕) &cNo tienes permisos para usar este comando."
   SPAWN-LOCATION: "&4(✕) &cLa ubicacion no existe."
   ARENA-LOCATION: "&4(✕) &cLa ubicacion no existe."
+  POTION-EFFECT: "&4(✕) &cEl efecto &e<effect> &cno es valido"

@@ -1,0 +1,14 @@
+WELCOME-MESSAGE:
+  ACTIVE: true
+  
+SOUND:
+  ACTIVE: true
+  TYPE: "EXPLODE"
+
+POTION-EFFECT:
+  ACTIVE: true
+  TYPES:
+      SPEED:
+        EFFECT: SPEED
+        DURATION: 1000000
+        AMPLIFIER: 2

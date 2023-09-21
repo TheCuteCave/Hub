@@ -14,7 +14,6 @@ import dev.myclxss.components.Files;
 import dev.myclxss.listener.InteractListener;
 import dev.myclxss.listener.JoinListener;
 import dev.myclxss.listener.ProtectionListener;
-
 public class API {
 
     private final List<UUID> arenaUsers = new ArrayList<>();
@@ -24,6 +23,7 @@ public class API {
 
     private Files lang;
     private Files locations;
+    private Files settings;
 
     public API(final Hub plugin) {
 
@@ -32,6 +32,7 @@ public class API {
 
         lang = new Files(plugin, "lang");
         locations = new Files(plugin, "locations");
+        settings = new Files(plugin, "settings");
 
         loadListener();
         loadCommand();
@@ -55,6 +56,10 @@ public class API {
 
     }
 
+    public void loadBungee() {
+
+    }
+
     public Hub getMain() {
         return main;
     }
@@ -73,6 +78,10 @@ public class API {
 
     public Files getLocations() {
         return locations;
+    }
+
+    public Files getSettings() {
+        return settings;
     }
 
 }
