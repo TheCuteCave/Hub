@@ -32,16 +32,10 @@ public class ArenaCommand implements CommandExecutor {
                 player.sendMessage(API.getInstance().getLang().getString("ERROR.NO-PERMISSION", true));
                 return true;
             }
-            if (API.getInstance().getLocations().getString("ARENA.WORLD") == null ||
-                    API.getInstance().getLocations().getString("ARENA.X") == null ||
-                    API.getInstance().getLocations().getString("ARENA.Y") == null ||
-                    API.getInstance().getLocations().getString("ARENA.Z") == null ||
-                    API.getInstance().getLocations().getString("ARENA.YAW") == null ||
-                    API.getInstance().getLocations().getString("ARENA.PITCH") == null) {
-                player.sendMessage(API.getInstance().getLang().getString("ERROR.ARENA-LOCATION", true));
+            if (API.getInstance().getLocations().getConfigurationSection("LOBBY") == null) {
+                player.sendMessage(API.getInstance().getLang().getString("ERROR.SPAWN-LOCATION", true));
                 return true;
             }
-
             if (API.getInstance().getArenaUsers().contains(player.getUniqueId())) {
                 API.getInstance().getArenaUsers().remove(player.getUniqueId());
                 player.sendMessage(API.getInstance().getLang().getString("ARENA.LEAVE", true));

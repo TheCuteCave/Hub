@@ -7,6 +7,9 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+
 import dev.myclxss.command.ArenaCommand;
 import dev.myclxss.command.FirstCommand;
 import dev.myclxss.command.SpawnCommand;
@@ -23,6 +26,7 @@ public class API {
 
     private static API instance;
     private final Hub main;
+    public static ProtocolManager protocolManager;
 
     private Files lang;
     private Files locations;
@@ -33,6 +37,7 @@ public class API {
         main = plugin;
 
         Items.init();
+        protocolManager = ProtocolLibrary.getProtocolManager();
 
         lang = new Files(plugin, "lang");
         locations = new Files(plugin, "locations");

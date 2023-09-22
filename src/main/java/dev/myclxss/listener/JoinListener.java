@@ -13,10 +13,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import com.comphenix.protocol.PacketType;
+import com.comphenix.protocol.events.PacketContainer;
+import com.comphenix.protocol.wrappers.WrappedChatComponent;
+
 import dev.myclxss.API;
 import dev.myclxss.components.Color;
 import dev.myclxss.components.Items;
 import dev.myclxss.components.TitleAPI;
+import me.clip.placeholderapi.PlaceholderAPI;
 
 public class JoinListener implements Listener {
 
@@ -28,7 +33,8 @@ public class JoinListener implements Listener {
         player.setFoodLevel(20);
         player.setHealth(20);
         player.getPlayer().setGameMode(GameMode.CREATIVE);
-        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")), 15,10);
+        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")), 15,
+                10);
         TitleAPI.sendTitle(player, 30, 80, 30, Color.set("&6Bienvenido"), Color.set("&eal servidor"));
 
         List<String> joinMessageString = API.getInstance().getLang().getStringList("WELCOME-MESSAGE");
@@ -36,7 +42,22 @@ public class JoinListener implements Listener {
         for (int i = 0; i < joinMessageString.size(); i++) {
             String joinMessage = joinMessageString.get(i);
 
-            player.sendMessage(Color.set(joinMessage));
+            player.sendMessage(Color.set(PlaceholderAPI.setPlaceholders(event.getPlayer(), joinMessage)));
+        }
+
+        List<String> headerList = API.getInstance().getLang().getStringList("TABLIST.HEADER");
+        List<String> footerList = API.getInstance().getLang().getStringList("TABLIST.FOOTER");
+
+        String headerText = String.join("\n", headerList);
+        String footerText = String.join("\n", footerList);
+
+        PacketContainer packetContainer = API.getInstance().protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
+        packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(headerText)).write(1,WrappedChatComponent.fromText(footerText));
+
+        try {
+            API.getInstance().protocolManager.sendServerPacket(event.getPlayer(), packetContainer);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // Eliminacion de todo el inventario
@@ -45,13 +66,13 @@ public class JoinListener implements Listener {
         player.getInventory().setChestplate(null);
         player.getInventory().setLeggings(null);
         player.getInventory().setBoots(null);
-        
+
         // Colocar los Items
         player.getInventory().setItem(1, Items.joinArenaItem);
         player.getInventory().setItem(2, Items.serverSelectorItem);
 
         if (API.getInstance().getLocations().getConfigurationSection("LOBBY") == null) {
-            player.sendMessage(API.getInstance().getLang().getString("ERROR.ARENA-LOCATION", true));
+            player.sendMessage(API.getInstance().getLang().getString("ERROR.SPAWN-LOCATION", true));
             return;
         }
         (new BukkitRunnable() {

@@ -26,12 +26,7 @@ public class InteractListener implements Listener {
                     player.sendMessage(API.getInstance().getLang().getString("ERROR.NO-PERMISSION", true));
                     return;
                 }
-                if (API.getInstance().getLocations().getString("ARENA.WORLD") == null ||
-                        API.getInstance().getLocations().getString("ARENA.X") == null ||
-                        API.getInstance().getLocations().getString("ARENA.Y") == null ||
-                        API.getInstance().getLocations().getString("ARENA.Z") == null ||
-                        API.getInstance().getLocations().getString("ARENA.YAW") == null ||
-                        API.getInstance().getLocations().getString("ARENA.PITCH") == null) {
+                if (API.getInstance().getLocations().getConfigurationSection("ARENA") == null) {
                     player.sendMessage(API.getInstance().getLang().getString("ERROR.ARENA-LOCATION", true));
                     return;
                 }

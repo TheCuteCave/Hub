@@ -103,6 +103,8 @@ public class ProtectionListener implements Listener {
         Player player = event.getEntity();
         Player killer = player.getKiller();
 
+        event.setDeathMessage(null);
+
         event.getDrops().clear(); // Borra todos los ítems que se iban a soltar al morir
         event.getEntity().getInventory().clear(); // Borra el inventario del jugador
 

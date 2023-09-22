@@ -5,6 +5,16 @@ HELP-MESSAGE:
 - "&aLinea 2"
 - "&eLinea 3"
 
+WELCOME-MESSAGE:
+- "&7&m-----------------------------------------"
+- "&fWelcome &e%player_name% &fal servidor"
+- ""
+- "&e➽ &fStore: &6http://store.domain.net"
+- "&e➽ &fDiscord: &6http://discord.gg/domain"
+- "&e➽ &fTeamSpeak: &6http://ts.domain.club"
+- ""
+- "&7&m-----------------------------------------"
+
 SOUND:
   ACTIVE: true
   TYPE: "EXPLODE"
@@ -51,11 +61,16 @@ SCOREBOARD:
     - " "
     - "&7play.expansioncraft.net"    
 
-WELCOME-MESSAGE:
-- "------------------"
-- "WELCOME"
-- "MESSAGE"
-- "------------------"
+TABLIST:
+    HEADER:
+    - "Texto de encabezado línea 1"
+    - "Texto de encabezado línea 2"
+    - " "
+
+    FOOTER:
+    - " "
+    - "Texto de pie de página línea 1"
+    - "Texto de pie de página línea 2"    
 
 ERROR:
   NO-PERMISSION: "&4(✕) &cNo tienes permisos para usar este comando."
