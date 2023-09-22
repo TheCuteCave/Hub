@@ -28,10 +28,6 @@ public class SpawnCommand implements CommandExecutor {
             player.sendMessage(API.getInstance().getLang().getString("ERROR.SPAWN-LOCATION", true));
             return true;
         }
-
-        if (API.getInstance().getArenaUsers().contains(player.getUniqueId())) {
-            API.getInstance().getArenaUsers().remove(player.getUniqueId());
-
             World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("LOBBY.WORLD"));
             double x = API.getInstance().getLocations().getDouble("LOBBY.X");
             double y = API.getInstance().getLocations().getDouble("LOBBY.Y");
@@ -42,7 +38,5 @@ public class SpawnCommand implements CommandExecutor {
             player.teleport(location);
             player.sendMessage(API.getInstance().getLang().getString("SPAWN.COMMAND", true));
             return true;
-        }
-        return false;
     }
 }

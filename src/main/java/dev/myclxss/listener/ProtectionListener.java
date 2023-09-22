@@ -9,10 +9,13 @@ import org.bukkit.World;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -107,6 +110,12 @@ public class ProtectionListener implements Listener {
             // Regenerar la salud del asesino al máximo
             killer.setHealth(killer.getMaxHealth());
         }
+    }
+
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onFallDamage(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player && event.getCause() == DamageCause.FALL)
+            event.setCancelled(true);
     }
 
     @EventHandler
