@@ -81,9 +81,12 @@ public class ArenaCommand implements CommandExecutor {
                 player.getInventory().setBoots(null);
 
                 // Equipacion del kit - Equipar los Items
-                player.getInventory().setItem(1, Items.swordKit);
+                player.getInventory().setItem(0, Items.swordKit);
+                player.getInventory().setItem(1, Items.rodKit);
                 player.getInventory().setHelmet(Items.helmetKit);
                 player.getInventory().setChestplate(Items.chestplateKit);
+                player.getInventory().setLeggings(Items.legginsKit);
+                player.getInventory().setBoots(Items.bootsKit);
 
                 player.sendMessage(API.getInstance().getLang().getString("ARENA.JOIN", true));
             }

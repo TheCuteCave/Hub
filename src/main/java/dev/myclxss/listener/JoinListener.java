@@ -23,24 +23,20 @@ public class JoinListener implements Listener {
         Player player = event.getPlayer();
 
         event.setJoinMessage(null);
-
+        player.setFoodLevel(20);
+        player.setHealth(20);
         player.setGameMode(GameMode.ADVENTURE);
+        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")),
+                15, 10);
 
-        // Activar un sonido al jugador al ingresar al servidor
-        if (API.getInstance().getSettings().getString("SOUND.ACTIVE").equals("true")) {
-            player.playSound(player.getLocation(),
-                    Sound.valueOf(API.getInstance().getSettings().getString("SOUND.TYPE")), 15, 10);
+        List<String> joinMessageString = API.getInstance().getLang().getStringList("WELCOME-MESSAGE");
+
+        for (int i = 0; i < joinMessageString.size(); i++) {
+            String joinMessage = joinMessageString.get(i);
+
+            player.sendMessage(Color.set(joinMessage));
         }
 
-        if (API.getInstance().getSettings().getString("WELCOME-MESSAGE.ACTIVE").equals("true")) {
-            List<String> joinMessageString = API.getInstance().getLang().getStringList("WELCOME-MESSAGE");
-
-            for (int i = 0; i < joinMessageString.size(); i++) {
-                String joinMessage = joinMessageString.get(i);
-
-                player.sendMessage(Color.set(joinMessage));
-            }
-        }
         // Eliminacion de todo el inventario
         player.getInventory().clear();
         player.getInventory().setHelmet(null);

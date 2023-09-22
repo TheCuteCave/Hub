@@ -5,6 +5,10 @@ HELP-MESSAGE:
 - "&aLinea 2"
 - "&eLinea 3"
 
+SOUND:
+  ACTIVE: true
+  TYPE: "EXPLODE"
+
 SPAWN:
   COMMAND: "&2(✓) &aFuiste enviado al spawn."
   SET-LOCATION: "&2(✓) &aLa ubicacion del spawn se coloco correctamente."

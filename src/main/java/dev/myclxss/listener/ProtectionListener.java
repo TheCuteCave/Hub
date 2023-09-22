@@ -44,9 +44,12 @@ public class ProtectionListener implements Listener {
         if (API.getInstance().getArenaUsers().contains(playerUUID)) {
 
             // Entrega de items de arena despues de morir
-            event.getPlayer().getInventory().setItem(1, Items.swordKit);
+            event.getPlayer().getInventory().setItem(0, Items.swordKit);
+            event.getPlayer().getInventory().setItem(1, Items.rodKit);
             event.getPlayer().getInventory().setHelmet(Items.helmetKit);
             event.getPlayer().getInventory().setChestplate(Items.chestplateKit);
+            event.getPlayer().getInventory().setLeggings(Items.legginsKit);
+            event.getPlayer().getInventory().setBoots(Items.bootsKit);
 
             World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("ARENA.WORLD"));
             double x = API.getInstance().getLocations().getDouble("ARENA.X");
