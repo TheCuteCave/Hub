@@ -3,16 +3,21 @@ package dev.myclxss.listener;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 import dev.myclxss.API;
 import dev.myclxss.components.Color;
+import dev.myclxss.components.Items;
 
 public class ProtectionListener implements Listener {
 
@@ -38,6 +43,11 @@ public class ProtectionListener implements Listener {
         // Verifica si el jugador está en la lista específica
         if (API.getInstance().getArenaUsers().contains(playerUUID)) {
 
+            // Entrega de items de arena despues de morir
+            event.getPlayer().getInventory().setItem(1, Items.swordKit);
+            event.getPlayer().getInventory().setHelmet(Items.helmetKit);
+            event.getPlayer().getInventory().setChestplate(Items.chestplateKit);
+
             World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("ARENA.WORLD"));
             double x = API.getInstance().getLocations().getDouble("ARENA.X");
             double y = API.getInstance().getLocations().getDouble("ARENA.Y");
@@ -60,5 +70,20 @@ public class ProtectionListener implements Listener {
             event.setRespawnLocation(location);
             event.getPlayer().sendMessage(Color.set("&cMoriste, pero fuiste enviado al spawn principal"));
         }
+    }
+
+    @EventHandler
+    public void onDrop(PlayerDropItemEvent event) {
+        Item droppedItem = event.getItemDrop();
+        droppedItem.remove(); // Esto elimina instantáneamente el objeto que el jugador ha soltado
+        if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+            event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onPlayerDeath(PlayerDeathEvent event) {
+        event.getDrops().clear(); // Borra todos los ítems que se iban a soltar al morir
+        event.getEntity().getInventory().clear(); // Borra el inventario del jugador
     }
 }

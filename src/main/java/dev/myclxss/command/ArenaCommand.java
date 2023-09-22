@@ -2,16 +2,15 @@ package dev.myclxss.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
 
 import dev.myclxss.API;
+import dev.myclxss.components.Items;
 
 public class ArenaCommand implements CommandExecutor {
 
@@ -60,8 +59,6 @@ public class ArenaCommand implements CommandExecutor {
             } else {
                 API.getInstance().getArenaUsers().add(player.getUniqueId());
 
-                player.getInventory().clear();
-
                 World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("ARENA.WORLD"));
                 double x = API.getInstance().getLocations().getDouble("ARENA.X");
                 double y = API.getInstance().getLocations().getDouble("ARENA.Y");
@@ -71,24 +68,22 @@ public class ArenaCommand implements CommandExecutor {
                 Location location = new Location(world, x, y, z, yaw, pitch);
                 player.teleport(location);
 
-                // equipar kit
-                ItemStack swordKit = new ItemStack(Material.DIAMOND_SWORD, 1);
-                ItemMeta swordKitMeta = swordKit.getItemMeta();
-                swordKitMeta.setDisplayName("kit");
-                swordKit.setItemMeta(swordKitMeta);
+                //Quitar los efectos de posion
+                for (PotionEffect effect : player.getActivePotionEffects()) {
+                    player.removePotionEffect(effect.getType());
+                }
 
-                ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
-                ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
-                ItemStack leggings = new ItemStack(Material.DIAMOND_LEGGINGS);
-                ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
+                // Equipacion del kit - Eliminar primero los items
+                player.getInventory().clear();
+                player.getInventory().setHelmet(null);
+                player.getInventory().setChestplate(null);
+                player.getInventory().setLeggings(null);
+                player.getInventory().setBoots(null);
 
-                // Equipa al jugador con la armadura de diamante
-                player.getInventory().setHelmet(helmet);
-                player.getInventory().setChestplate(chestplate);
-                player.getInventory().setLeggings(leggings);
-                player.getInventory().setBoots(boots);
-
-                player.getInventory().setItem(1, swordKit);
+                // Equipacion del kit - Equipar los Items
+                player.getInventory().setItem(1, Items.swordKit);
+                player.getInventory().setHelmet(Items.helmetKit);
+                player.getInventory().setChestplate(Items.chestplateKit);
 
                 player.sendMessage(API.getInstance().getLang().getString("ARENA.JOIN", true));
             }
@@ -101,17 +96,16 @@ public class ArenaCommand implements CommandExecutor {
             if (API.getInstance().getArenaUsers().contains(player.getUniqueId())) {
                 API.getInstance().getArenaUsers().remove(player.getUniqueId());
 
-                player.sendMessage(API.getInstance().getLang().getString("ARENA.LEAVE", true));
+                player.getInventory().clear();
+                player.getInventory().setHelmet(null);
+                player.getInventory().setChestplate(null);
+                player.getInventory().setLeggings(null);
+                player.getInventory().setBoots(null);
 
-                if (API.getInstance().getLocations().getString("LOBBY.WORLD") == null ||
-                        API.getInstance().getLocations().getString("LOBBY.X") == null ||
-                        API.getInstance().getLocations().getString("LOBBY.Y") == null ||
-                        API.getInstance().getLocations().getString("LOBBY.Z") == null ||
-                        API.getInstance().getLocations().getString("LOBBY.YAW") == null ||
-                        API.getInstance().getLocations().getString("LOBBY.PITCH") == null) {
-                    player.sendMessage(API.getInstance().getLang().getString("ERROR.SPAWN-LOCATION", true));
-                    return true;
-                }
+                player.getInventory().setItem(1, Items.joinArenaItem);
+                player.getInventory().setItem(2, Items.serverSelectorItem);
+
+                player.sendMessage(API.getInstance().getLang().getString("ARENA.LEAVE", true));
 
                 World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("LOBBY.WORLD"));
                 double x = API.getInstance().getLocations().getDouble("LOBBY.X");
@@ -122,8 +116,6 @@ public class ArenaCommand implements CommandExecutor {
                 Location location = new Location(world, x, y, z, yaw, pitch);
                 player.teleport(location);
                 player.sendMessage(API.getInstance().getLang().getString("SPAWN.COMMAND", true));
-
-                // regresar items de hub
 
                 return true;
             }

@@ -11,9 +11,12 @@ import dev.myclxss.command.ArenaCommand;
 import dev.myclxss.command.FirstCommand;
 import dev.myclxss.command.SpawnCommand;
 import dev.myclxss.components.Files;
+import dev.myclxss.components.Items;
 import dev.myclxss.listener.InteractListener;
 import dev.myclxss.listener.JoinListener;
 import dev.myclxss.listener.ProtectionListener;
+import dev.myclxss.listener.QuitListener;
+
 public class API {
 
     private final List<UUID> arenaUsers = new ArrayList<>();
@@ -30,6 +33,8 @@ public class API {
         instance = this;
         main = plugin;
 
+        Items.init();
+
         lang = new Files(plugin, "lang");
         locations = new Files(plugin, "locations");
         settings = new Files(plugin, "settings");
@@ -45,6 +50,7 @@ public class API {
         pluginManager.registerEvents(new JoinListener(), main);
         pluginManager.registerEvents(new InteractListener(), main);
         pluginManager.registerEvents(new ProtectionListener(), main);
+        pluginManager.registerEvents(new QuitListener(), main);
 
     }
 

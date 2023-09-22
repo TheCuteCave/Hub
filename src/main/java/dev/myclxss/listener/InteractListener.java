@@ -19,8 +19,7 @@ public class InteractListener implements Listener {
 
         // Arena Item
         if (event.getItem() != null && event.getItem().getItemMeta().getDisplayName() != null
-                && event.getItem().getItemMeta().getDisplayName()
-                        .equals(API.getInstance().getLang().getString("ITEMS.ARENA.NAME", true))) {
+                && event.getItem().getItemMeta().getDisplayName().equals(API.getInstance().getLang().getString("ITEMS.ARENA.NAME", true))) {
             Action action = event.getAction();
             if (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK) {
                 if (!player.hasPermission("hub.joinarena") || !player.hasPermission("hub.all")) {
