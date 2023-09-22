@@ -1,5 +1,6 @@
 dev\myclxss\command\ArenaCommand.class
 dev\myclxss\components\Items.class
+dev\myclxss\components\TitleAPI.class
 dev\myclxss\listener\JoinListener.class
 dev\myclxss\API.class
 dev\myclxss\command\SpawnCommand.class

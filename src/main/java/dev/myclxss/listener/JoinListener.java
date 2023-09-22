@@ -15,6 +15,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import dev.myclxss.API;
 import dev.myclxss.components.Color;
 import dev.myclxss.components.Items;
+import dev.myclxss.components.TitleAPI;
 
 public class JoinListener implements Listener {
 
@@ -26,8 +27,9 @@ public class JoinListener implements Listener {
         player.setFoodLevel(20);
         player.setHealth(20);
         player.setGameMode(GameMode.ADVENTURE);
-        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")),
-                15, 10);
+        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")),15, 10);
+
+        TitleAPI.sendTitle(player, 30, 80, 30, Color.set("&6Bienvenido"), Color.set("&eal servidor"));
 
         List<String> joinMessageString = API.getInstance().getLang().getStringList("WELCOME-MESSAGE");
 

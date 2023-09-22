@@ -26,7 +26,6 @@ public class API {
 
     private Files lang;
     private Files locations;
-    private Files settings;
 
     public API(final Hub plugin) {
 
@@ -37,7 +36,6 @@ public class API {
 
         lang = new Files(plugin, "lang");
         locations = new Files(plugin, "locations");
-        settings = new Files(plugin, "settings");
 
         loadListener();
         loadCommand();
@@ -85,9 +83,4 @@ public class API {
     public Files getLocations() {
         return locations;
     }
-
-    public Files getSettings() {
-        return settings;
-    }
-
 }

@@ -10,10 +10,20 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 
 import dev.myclxss.API;
 import dev.myclxss.components.Color;
@@ -86,7 +96,88 @@ public class ProtectionListener implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
+
+        Player player = event.getEntity();
+        Player killer = player.getKiller();
+
         event.getDrops().clear(); // Borra todos los ítems que se iban a soltar al morir
         event.getEntity().getInventory().clear(); // Borra el inventario del jugador
+
+        if (killer != null) {
+            // Regenerar la salud del asesino al máximo
+            killer.setHealth(killer.getMaxHealth());
+        }
+    }
+
+    @EventHandler
+    public void onWeather(WeatherChangeEvent event) {
+        event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onFood(FoodLevelChangeEvent event) {
+        event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onEntitySpawn(EntitySpawnEvent event) {
+        event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onblockPlace(BlockPlaceEvent event) {
+        if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+            event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onblockBreake(BlockBreakEvent event) {
+        if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+            event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void bucketFill(PlayerBucketEmptyEvent event) {
+        if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+            event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void bucketEmpty(PlayerBucketFillEvent event) {
+        if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+            event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void entityExplode(EntityExplodeEvent event) {
+        event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onPickup(PlayerPickupItemEvent event) {
+        event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onClick(InventoryClickEvent event) {
+        if (!event.getWhoClicked().getGameMode().equals(GameMode.CREATIVE))
+            event.setCancelled(true);
+        return;
+    }
+
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent event) {
+        if (event.toWeatherState()) {
+            event.setCancelled(true);
+        }
     }
 }

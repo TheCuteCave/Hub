@@ -10,7 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
 import dev.myclxss.API;
+import dev.myclxss.components.Color;
 import dev.myclxss.components.Items;
+import dev.myclxss.components.TitleAPI;
 
 public class ArenaCommand implements CommandExecutor {
 
@@ -88,6 +90,8 @@ public class ArenaCommand implements CommandExecutor {
                 player.getInventory().setLeggings(Items.legginsKit);
                 player.getInventory().setBoots(Items.bootsKit);
 
+                TitleAPI.sendTitle(player, 15, 40, 15, Color.set("&4&LARENA"), Color.set("&Centraste en combate"));
+
                 player.sendMessage(API.getInstance().getLang().getString("ARENA.JOIN", true));
             }
         }
@@ -107,6 +111,9 @@ public class ArenaCommand implements CommandExecutor {
 
                 player.getInventory().setItem(1, Items.joinArenaItem);
                 player.getInventory().setItem(2, Items.serverSelectorItem);
+                
+                TitleAPI.sendTitle(player, 15, 40, 15, Color.set("&4&LARENA"), Color.set("&Csaliste del combate"));
+
 
                 player.sendMessage(API.getInstance().getLang().getString("ARENA.LEAVE", true));
 
