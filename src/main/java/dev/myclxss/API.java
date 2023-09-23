@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 import com.comphenix.protocol.ProtocolLibrary;
@@ -21,6 +22,7 @@ import dev.myclxss.listener.JoinListener;
 import dev.myclxss.listener.ProtectionListener;
 import dev.myclxss.listener.QuitListener;
 import dev.myclxss.listener.ScoreboardListener;
+import dev.myclxss.menu.ServerselectorMenu;
 
 public class API {
 
@@ -64,6 +66,7 @@ public class API {
         pluginManager.registerEvents(new InteractListener(), main);
         pluginManager.registerEvents(new ProtectionListener(), main);
         pluginManager.registerEvents(new QuitListener(), main);
+        pluginManager.registerEvents(new ServerselectorMenu(), main);
 
     }
 
@@ -76,6 +79,8 @@ public class API {
     }
 
     public void loadBungee() {
+
+        main.getServer().getMessenger().registerOutgoingPluginChannel((Plugin) this, "BungeeCord");
 
     }
 

@@ -2,6 +2,7 @@ package dev.myclxss.listener;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +11,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.block.Action;
 
 import dev.myclxss.API;
+import dev.myclxss.components.Color;
+import dev.myclxss.menu.ServerselectorMenu;
 
 public class InteractListener implements Listener {
 
@@ -41,7 +44,8 @@ public class InteractListener implements Listener {
 
                     player.getInventory().clear();
 
-                    World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("LOBBY.WORLD"));
+                    World world = Bukkit.getServer()
+                            .getWorld(API.getInstance().getLocations().getString("LOBBY.WORLD"));
                     double x = API.getInstance().getLocations().getDouble("ARENA.X");
                     double y = API.getInstance().getLocations().getDouble("ARENA.Y");
                     double z = API.getInstance().getLocations().getDouble("ARENA.Z");
@@ -50,11 +54,21 @@ public class InteractListener implements Listener {
                     Location location = new Location(world, x, y, z, yaw, pitch);
                     player.teleport(location);
 
-                    //equipar kit
+                    // equipar kit
 
                     player.sendMessage(API.getInstance().getLang().getString("ARENA.JOIN", true));
                 }
 
+                return;
+            }
+        }
+        if (event.getItem() != null && event.getItem().getItemMeta().getDisplayName() != null
+                && event.getItem().getItemMeta().getDisplayName().equals(Color.set("&eServer Selector"))) {
+            Action action = event.getAction();
+            if (action == Action.RIGHT_CLICK_AIR || action == Action.LEFT_CLICK_AIR) {
+                player.playSound(player.getLocation(), Sound.NOTE_PLING, 15, 10);
+                ServerselectorMenu inv = new ServerselectorMenu();
+                inv.createServerSelector(player);
                 return;
             }
         }
