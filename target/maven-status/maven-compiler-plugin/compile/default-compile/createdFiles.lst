@@ -7,6 +7,7 @@ dev\myclxss\listener\JoinListener$1.class
 dev\myclxss\API.class
 dev\myclxss\command\SpawnCommand.class
 dev\myclxss\command\FirstCommand.class
+dev\myclxss\menu\ServerselectorMenu.class
 dev\myclxss\components\Color.class
 dev\myclxss\Hub.class
 dev\myclxss\listener\ProtectionListener.class
