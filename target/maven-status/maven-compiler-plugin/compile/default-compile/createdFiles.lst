@@ -1,4 +1,5 @@
 dev\myclxss\command\ArenaCommand.class
+dev\myclxss\components\Board.class
 dev\myclxss\components\Items.class
 dev\myclxss\components\TitleAPI.class
 dev\myclxss\listener\JoinListener.class
@@ -9,6 +10,7 @@ dev\myclxss\command\FirstCommand.class
 dev\myclxss\components\Color.class
 dev\myclxss\Hub.class
 dev\myclxss\listener\ProtectionListener.class
+dev\myclxss\listener\ScoreboardListener.class
 dev\myclxss\listener\InteractListener.class
 dev\myclxss\listener\QuitListener.class
 dev\myclxss\components\Files.class

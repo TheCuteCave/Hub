@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 
 import com.comphenix.protocol.ProtocolLibrary;
@@ -19,6 +20,7 @@ import dev.myclxss.listener.InteractListener;
 import dev.myclxss.listener.JoinListener;
 import dev.myclxss.listener.ProtectionListener;
 import dev.myclxss.listener.QuitListener;
+import dev.myclxss.listener.ScoreboardListener;
 
 public class API {
 
@@ -26,7 +28,9 @@ public class API {
 
     private static API instance;
     private final Hub main;
+
     public static ProtocolManager protocolManager;
+    public ScoreboardListener SB = new ScoreboardListener();
 
     private Files lang;
     private Files locations;
@@ -44,6 +48,12 @@ public class API {
 
         loadListener();
         loadCommand();
+
+        try {
+            scoreboardTask();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadListener() {
@@ -67,6 +77,15 @@ public class API {
 
     public void loadBungee() {
 
+    }
+
+    public void scoreboardTask() {
+        Bukkit.getScheduler().runTaskTimer(main, () -> {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                SB.updateScoreboard(player);
+
+            }
+        }, 0, 20);
     }
 
     public Hub getMain() {

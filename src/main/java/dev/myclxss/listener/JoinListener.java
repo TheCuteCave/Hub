@@ -3,7 +3,6 @@ package dev.myclxss.listener;
 import java.util.List;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.World;
@@ -30,11 +29,13 @@ public class JoinListener implements Listener {
         Player player = event.getPlayer();
 
         event.setJoinMessage(null);
+
         player.setFoodLevel(20);
         player.setHealth(20);
-        player.getPlayer().setGameMode(GameMode.CREATIVE);
-        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")), 15,
-                10);
+
+        API.getInstance().SB.createScoreboard(player);
+
+        player.playSound(player.getLocation(), Sound.valueOf(API.getInstance().getLang().getString("SOUND.TYPE")), 15,10);
         TitleAPI.sendTitle(player, 30, 80, 30, Color.set("&6Bienvenido"), Color.set("&eal servidor"));
 
         List<String> joinMessageString = API.getInstance().getLang().getStringList("WELCOME-MESSAGE");
@@ -51,11 +52,13 @@ public class JoinListener implements Listener {
         String headerText = String.join("\n", headerList);
         String footerText = String.join("\n", footerList);
 
-        PacketContainer packetContainer = API.getInstance().protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
-        packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(headerText)).write(1,WrappedChatComponent.fromText(footerText));
+        API.getInstance();
+        PacketContainer packetContainer = API.protocolManager.createPacket(PacketType.Play.Server.PLAYER_LIST_HEADER_FOOTER);
+        packetContainer.getChatComponents().write(0, WrappedChatComponent.fromText(Color.set(headerText))).write(1,WrappedChatComponent.fromText(Color.set(footerText)));
 
         try {
-            API.getInstance().protocolManager.sendServerPacket(event.getPlayer(), packetContainer);
+            API.getInstance();
+            API.protocolManager.sendServerPacket(event.getPlayer(), packetContainer);
         } catch (Exception exception) {
             exception.printStackTrace();
         }

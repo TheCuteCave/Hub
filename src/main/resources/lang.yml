@@ -6,12 +6,31 @@ HELP-MESSAGE:
 - "&eLinea 3"
 
 WELCOME-MESSAGE:
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
+- ""
 - "&7&m-----------------------------------------"
 - "&fWelcome &e%player_name% &fal servidor"
 - ""
-- "&e➽ &fStore: &6http://store.domain.net"
-- "&e➽ &fDiscord: &6http://discord.gg/domain"
-- "&e➽ &fTeamSpeak: &6http://ts.domain.club"
+- "&e⁕ &fStore: &6http://store.domain.net"
+- "&e⁕ &fDiscord: &6http://discord.gg/domain"
+- "&e⁕ &fTeamSpeak: &6http://ts.domain.club"
 - ""
 - "&7&m-----------------------------------------"
 
@@ -28,49 +47,28 @@ ARENA:
   LEAVE: "&4(✕) &aHas salido del combate."
   SET-LOCATION: "&2() &aLa ubicacion de la arena se coloco correctamente."  
 
-ITEMS:
-  ARENA:
-    NAME: "&6Arena Item"
-    ITEM: DIAMOND_SWORD
-    SLOT: 0
-    LORE:
-    - "&6Linea 1"
-    - "&aLinea 2"
-    - "&eLinea 3"
-
-  SERVER-SELECTO:
-    NAME: "&6Server Item"
-    ITEM: COMPASS
-    SLOT: 1
-    LORE:
-    - "&6Linea 1"
-    - "&aLinea 2"
-    - "&eLinea 3"
-
 SCOREBOARD:
-  TITLE: "&5&lEXPANSION CRAFT"
+  TITLE: "&6&lHUB"
   LINES:
     - " "
-    - "&5&lUsuario"
-    - "&8&l● &fNick: &7%player_name%"
-    - "&8&l● &fRango: %luckperms_prefix%"
+    - "&e&lUsuario"
+    - "&8&l| &fNick: &7%player_name%"
+    - "&8&l| &fRango: "
     - " "
-    - "&5&lServidor"
-    - "&8&l● &fHub: &d#2"
-    - "&8&l● &fEn linea: &d%bungee_total%"
+    - "&e&lServidor"
+    - "&8&l| &fHub: #1"
+    - "&8&l| &fEn linea:"
     - " "
-    - "&7play.expansioncraft.net"    
+    - "     &7&oby myclass"    
 
 TABLIST:
     HEADER:
-    - "Texto de encabezado línea 1"
-    - "Texto de encabezado línea 2"
-    - " "
+    - "&6&lHUBCORE"
+    - "&r"
 
     FOOTER:
-    - " "
-    - "Texto de pie de página línea 1"
-    - "Texto de pie de página línea 2"    
+    - "&r"
+    - "&7by myclass"    
 
 ERROR:
   NO-PERMISSION: "&4(✕) &cNo tienes permisos para usar este comando."

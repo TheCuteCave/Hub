@@ -73,18 +73,6 @@ public class ProtectionListener implements Listener {
             Location location = new Location(world, x, y, z, yaw, pitch);
             event.setRespawnLocation(location);
             event.getPlayer().sendMessage(Color.set("&aMoriste, pero fuiste enviado al spawn de arena"));
-
-        } else {
-
-            World world = Bukkit.getServer().getWorld(API.getInstance().getLocations().getString("LOBBY.WORLD"));
-            double x = API.getInstance().getLocations().getDouble("LOBBY.X");
-            double y = API.getInstance().getLocations().getDouble("LOBBY.Y");
-            double z = API.getInstance().getLocations().getDouble("LOBBY.Z");
-            float yaw = (float) API.getInstance().getLocations().getDouble("LOBBY.YAW");
-            float pitch = (float) API.getInstance().getLocations().getDouble("LOBBY.PITCH");
-            Location location = new Location(world, x, y, z, yaw, pitch);
-            event.setRespawnLocation(location);
-            event.getPlayer().sendMessage(Color.set("&cMoriste, pero fuiste enviado al spawn principal"));
         }
     }
 

@@ -20,7 +20,15 @@ public class FirstCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length == 0) {
-            player.sendMessage(Color.set("&6args 0"));
+            player.sendMessage(Color.set("&r"));
+            player.sendMessage(Color.set("&r"));
+            player.sendMessage(Color.set("&7&m------------------------------"));
+            player.sendMessage(Color.set("&e⁕ &8| &6&lHubCore"));
+            player.sendMessage(Color.set("&e⁕ &8| &fversion 1.0v"));
+            player.sendMessage(Color.set("&e⁕ &8| &eby myclass"));
+            player.sendMessage(Color.set("&7&m------------------------------"));
+            player.sendMessage(Color.set("&r"));
+            player.sendMessage(Color.set("&r"));
             return true;
         }
         if (args[0].equalsIgnoreCase("help")) {
